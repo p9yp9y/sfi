@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,11 +68,8 @@ public class IndexTool {
 		} else {
 		}
 		Path link = new File(out, name).toPath();
-		if (Files.exists(link)) {
-			Files.delete(link);
-		}
-		Files.createSymbolicLink(link, target.toPath());
-		LOGGER.log(Level.INFO, "{0} linked to {1}", new Object[] {target, link});
+		Files.createSymbolicLink(link, Paths.get(target.getAbsolutePath()));
+		LOGGER.log(Level.INFO, "{0} linked to {1}", new Object[] {target.toPath(), link});
 		return namePart;
 	}
 

@@ -2,4 +2,4 @@
 
 git clone https://github.com/p9yp9y/sfi.git
 cd sfi
-mvn exec:java -Dexec.args="-i in -o out"
+mvn exec:java -Dexec.args="-i", "src/test/resources/in", "-o", "target/out"
