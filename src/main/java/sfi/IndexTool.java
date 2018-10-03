@@ -54,11 +54,13 @@ public class IndexTool {
 
 	private void createLinks(final File target, final String name, final String[] nameParts) throws IOException {
 		for (String namePart : nameParts) {
-			namePart = cretaeLink(target, name, namePart);
+			if (namePart.length() > 0) {
+				namePart = createLink(target, name, namePart);
+			}
 		}
 	}
 
-	private String cretaeLink(final File target, final String name, String namePart) throws IOException {
+	private String createLink(final File target, final String name, String namePart) throws IOException {
 		File out;
 		namePart = namePart.toUpperCase();
 		out = new File(outputDir, namePart.substring(0, 1));
