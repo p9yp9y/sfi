@@ -68,8 +68,10 @@ public class IndexTool {
 		} else {
 		}
 		Path link = new File(out, name).toPath();
-		Files.createSymbolicLink(link, Paths.get(target.getAbsolutePath()));
-		LOGGER.log(Level.INFO, "{0} linked to {1}", new Object[] {target.toPath(), link});
+		if (!link.toFile().exists()) {
+			Files.createSymbolicLink(link, Paths.get(target.getAbsolutePath()));
+			LOGGER.log(Level.INFO, "{0} linked to {1}", new Object[] {target.toPath(), link});
+		}
 		return namePart;
 	}
 
